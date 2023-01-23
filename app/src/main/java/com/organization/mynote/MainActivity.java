@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         List<Note> notesList = new ArrayList<>();
 
         for (int i = 1;i<=record;i++){
-            Note note = new Note(1,"name_"+i,"Some note text_"+i);
+            Note note = new Note(i,"name_"+i,"Some note text_"+i);
             notesList.add(note);
         }
         return notesList;
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.i(TAG, "Deleted: \n"+ notesList.get(position));
+                displayMessage("Remove note (id: "+notesList.get(position).getId()+")");
                 notesList.remove(position);
                 adapter.notifyDataSetChanged();
             }
@@ -92,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Yes",listener)
                 .setNegativeButton("No",null)
                 .show();
+    }
+
+    private void displayMessage(String message) {
+        Snackbar.make(listView,message,Snackbar.LENGTH_LONG).show();
     }
 
 }
