@@ -15,11 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<String> notesList = new ArrayList<>();
+        List<Note> notesList = new ArrayList<>();
+        for (int i=1;i<=20;i++){
+            Note note = new Note(1,"name_"+i,"Some note text_"+i);
+            notesList.add(note);
+        }
 
-        notesList.addAll(Arrays.asList("Pirm","Antr","Trec","Ketivi","Penk","Sest","Sek"));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+
+        ArrayAdapter<Note> adapter = new ArrayAdapter<>(
                 MainActivity.this,
                 android.R.layout.simple_list_item_1,
                 notesList
