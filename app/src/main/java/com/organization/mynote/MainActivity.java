@@ -4,31 +4,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ListView listView;
+    private ArrayAdapter<Note> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        List<Note> notesList = generateNoteList(20);
+
+        setUpView();
+        setUpListView(notesList);
+    }
+
+    private List<Note> generateNoteList(int record) {
         List<Note> notesList = new ArrayList<>();
-        for (int i=1;i<=20;i++){
+        for (int i = 1;i<=record;i++){
             Note note = new Note(1,"name_"+i,"Some note text_"+i);
             notesList.add(note);
         }
+        return notesList;
+    }
 
-
-
-        ArrayAdapter<Note> adapter = new ArrayAdapter<>(
+    private void setUpListView(List<Note> notesList) {
+        adapter = new ArrayAdapter<>(
                 MainActivity.this,
                 android.R.layout.simple_list_item_1,
                 notesList
         );
-        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
+    }
+
+    private void setUpView() {
+        setContentView(R.layout.activity_main);
+        this.listView = findViewById(R.id.listView);
+
     }
 }
