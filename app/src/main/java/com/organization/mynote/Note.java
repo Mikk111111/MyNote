@@ -3,6 +3,7 @@ package com.organization.mynote;
 import androidx.annotation.NonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Note {
 
@@ -16,7 +17,10 @@ public class Note {
         this.id = id;
         this.name = name;
         this.content = content;
+        this.creationDate = LocalDateTime.now();
+        this.updateDate = LocalDateTime.now();
     }
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public int getId() {
         return id;
@@ -63,8 +67,8 @@ public class Note {
     public String toString() {
         return id +
                 " / " + name +
-                " / " + content +
-                " / " + creationDate +
-                " / " + updateDate;
+                " \n " + content +
+                " /\n " + creationDate.format(formatter) +
+                " /\n " + updateDate.format(formatter);
     }
 }
