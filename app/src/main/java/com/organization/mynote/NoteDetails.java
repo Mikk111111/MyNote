@@ -71,7 +71,7 @@ public class NoteDetails extends AppCompatActivity {
                 note.setName(noteNameEditText.getText().toString());
                 note.setContent(noteContentEditText.getText().toString());
                 note.setUpdateDate(LocalDateTime.now());
-                if(note.getId()==0){
+                if(note.getId()==null){
                     note.setCreateDate(LocalDateTime.now());
                 }
                 noteDao.insertNote(note);

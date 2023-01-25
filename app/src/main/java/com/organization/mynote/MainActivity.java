@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         this.notesList = noteDao.getAll();
         setUpListViewAdapter();
-
     }
 
     private void setUpView() {
