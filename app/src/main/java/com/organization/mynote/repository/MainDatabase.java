@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.organization.mynote.Constant;
 import com.organization.mynote.Note;
@@ -14,6 +15,7 @@ import com.organization.mynote.Note;
         version = Constant.MAIN_DATABASE_VERSION,
         exportSchema = false
 )
+@TypeConverters({DateConverter.class})
 public abstract class MainDatabase extends RoomDatabase {
     private static MainDatabase instance;
     private static int previousVersionDB = Constant.MAIN_DATABASE_VERSION-1;

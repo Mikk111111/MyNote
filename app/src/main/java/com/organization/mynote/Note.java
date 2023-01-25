@@ -13,7 +13,7 @@ public class Note {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "note_id")
-    private int id;
+    private Integer id;
     @ColumnInfo(name = "note_name")
     private String name;
     @ColumnInfo(name = "note_content")
@@ -29,11 +29,16 @@ public class Note {
     @Ignore
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    @Ignore
+    public Note(){
+
+    }
+
     public Note(String name, String content) {
         this.name = name;
         this.content = content;
-//        this.createDate = LocalDateTime.now();
-//        this.updateDate = LocalDateTime.now();
+        this.createDate = LocalDateTime.now();
+        this.updateDate = LocalDateTime.now();
     }
 
     @Ignore
@@ -41,11 +46,11 @@ public class Note {
         this.id = id;
         this.name = name;
         this.content = content;
-//        this.createDate = LocalDateTime.now();
-//        this.updateDate = LocalDateTime.now();
+        this.createDate = LocalDateTime.now();
+        this.updateDate = LocalDateTime.now();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -69,26 +74,26 @@ public class Note {
         this.content = content;
     }
 
-//    public LocalDateTime getCreateDate() {
-//        return createDate;
-//    }
-//
-//    public void setCreateDate(LocalDateTime createDate) {
-//        this.createDate = createDate;
-//    }
-//
-//    public LocalDateTime getUpdateDate() {
-//        return updateDate;
-//    }
-//
-//    public void setUpdateDate(LocalDateTime updateDate) {
-//        this.updateDate = updateDate;
-//    }
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
+    }
 
     @Override
     public String toString() {
         return String.format(
-                "%s | %s %n %s | %s%n %s",
+                "%s | %s %n %s | %n%s %n%s",
                 id,
                 name,
                 content,
